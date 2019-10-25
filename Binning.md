@@ -409,7 +409,7 @@ How many contigs were clustered? How many cut up contigs are there in total?
 Instead copy in Annotate directory:
 ```
 cd ~/Projects/InfantGut
-cp ~/Prerun/Annotate .
+cp -r ~/Prerun/Annotate .
 ```
 
 
