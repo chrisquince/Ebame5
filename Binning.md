@@ -395,7 +395,8 @@ cp -r ~/Prerun/Annotate .
 Now we calculate scg frequencies on the CONCOCT clusters:
 ```
 cd Concoct
-python $CONCOCT/scripts/COG_table.py -b ../Annotate/final_contigs_gt1000_c10K.out  -m $CONCOCT/scgs/scg_cogs_min0.97_max1.03_unique_genera.txt -c clustering_gt1000.csv  --cdd_cog_file $CONCOCT/scgs/cdd_to_cog.tsv > clustering_gt1000_scg.tsv
+sed '1d' clustering_gt1000.csv > clustering_gt1000R.csv
+python $CONCOCT/scripts/COG_table.py -b ../Annotate/final_contigs_gt1000_c10K.out  -m $CONCOCT/scgs/scg_cogs_min0.97_max1.03_unique_genera.txt -c clustering_gt1000R.csv  --cdd_cog_file $CONCOCT/scgs/cdd_to_cog.tsv > clustering_gt1000_scg.tsv
 ```
 
 This should result in 5 MAGs with 75% single copy copy SCGs. Use R to identify them:
