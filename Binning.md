@@ -125,7 +125,7 @@ What is contig N50?
 
 Compare to a spades assembly without noise removal:
 ```
-spades.py --only-assembler --meta -1 ReadsSub/sample1_R1.fastq -2 ReadsSub/sample1_R2.fastq -o AssemblyS -t 12 -k 77
+spades.py --only-assembler --meta -1 ReadsSub/sample1_R1.fastq -2 ReadsSub/sample1_R2.fastq -o AssemblyS -t 4 -k 55
 ```
 
 
@@ -149,7 +149,7 @@ megahit:
 cd ~/Projects/InfantGut
 ls ReadsSub/*R1.fastq | tr "\n" "," | sed 's/,$//' > R1.csv
 ls ReadsSub/*R2.fastq | tr "\n" "," | sed 's/,$//' > R2.csv
-megahit -1 $(<R1.csv) -2 $(<R2.csv) -t 12 -o Assembly
+megahit -1 $(<R1.csv) -2 $(<R2.csv) -t 4 -o Assembly
 ```
 
 That would take 20 minutes so please copy in the directory instead:
@@ -199,7 +199,7 @@ produce a sam file 'Map/sample1.sam':
 
 ```
     mkdir Map
-    bwa mem -t 12 Assembly/final_contigs_c10K.fa ReadsSub/sample1_R1.fastq ReadsSub/sample1_R2.fastq > Map/sample1.sam
+    bwa mem -t 4 Assembly/final_contigs_c10K.fa ReadsSub/sample1_R1.fastq ReadsSub/sample1_R2.fastq > Map/sample1.sam
 ```
 </p>
 </details>
