@@ -13,34 +13,6 @@ Assembly based metagenomics represents a complex analysis pathway:
 
 4. [MAG annotation](#MAGs)
 
-Login into your VM:
-
-```
-ssh -Y ubuntu@137.205.69.xxx
-```
-
-Work in pairs on following machines:
-
-Galway10 - 137.205.69.23
-
-Galway9 - 137.205.69.42	
-
-Galway8	- 137.205.69.135
-	
-Galway7	- 137.205.69.11
-
-Galway6	- 137.205.69.8
-	
-Galway5	- 137.205.69.45
-
-Galway4	- 137.205.69.212
-
-Galway3	- 137.205.69.68
-	
-Galway2	- 137.205.69.144
-
-Galway1	- 137.205.69.50
-
 
 We are now going to perform a basic assembly based metagenomics analysis of these same samples. 
 This will involve a collection of different software programs:
@@ -64,6 +36,14 @@ This will involve a collection of different software programs:
 9. [GFF python parser] (https://github.com/chapmanb/bcbb/tree/master/gff)
 
 <a name="coassembly"/>
+
+##Getting started
+
+Create a VM - EBAME19-MetaHood
+
+```
+conda activate MetaHood
+```
 
 ## Assembly
 
@@ -145,7 +125,7 @@ What is contig N50?
 
 Compare to a spades assembly without noise removal:
 ```
-spades.py --only-assembler --meta -1 ReadsSub/sample1_R1.fastq -2 ReadsSub/sample1_R2.fastq -o AssemblyS -t 12 -k 23,55,77
+spades.py --only-assembler --meta -1 ReadsSub/sample1_R1.fastq -2 ReadsSub/sample1_R2.fastq -o AssemblyS -t 12 -k 77
 ```
 
 
@@ -182,7 +162,7 @@ cp -r ~/Prerun/Assembly .
 <p>
 
 ```
-contig-stats.pl < Assembly/final.contigs.fasta 
+contig-stats.pl < Assembly/final.contigs.fa 
 ```
 </p>
 </details>
@@ -240,7 +220,7 @@ The sam file is a bit bulky so we never store alignments in this format instead 
 
 ```
     cd Map
-    samtools view -h -b -S sample1.sam > sample1.ba
+    samtools view -h -b -S sample1.sam > sample1.bam
 ```
 </p>
 </details>
@@ -262,7 +242,7 @@ Now we need to calculate the contig lengths:
 python $DESMAN/scripts/Lengths.py -i ../Assembly/final_contigs_c10K.fa > ../Assembly/Lengths.txt
 ```
 
-Finally we get a history of contig coverages:
+Finally we get a histogram of contig coverages:
 ```
 bedtools genomecov -ibam sample1.mapped.sorted.bam -g ../Assembly/Lengths.txt > sample1_cov.txt
 ```
@@ -351,21 +331,20 @@ comma seperated to tab separated using 'tr':
 <p>
 
 ```
-     mkdir Concoct
+mkdir Concoct
 
-    mv Coverage.csv Concoct
+mv Coverage.csv Concoct
 
-    cd Concoct
+cd Concoct
 
-    tr "," "\t" < Coverage.csv > Coverage.tsv
+tr "," "\t" < Coverage.csv > Coverage.tsv
 ```
 </p>
 </details>
 
 Concoct itself is quite straightforward to run:
 ```
-    concoct --coverage_file Coverage.tsv --composition_file ../Assembly/final_contigs_c10K.fa -t 12 
-
+concoct --coverage_file Coverage.tsv --composition_file ../Assembly/final_contigs_c10K.fa -t 4 
 ```
 
 Key output is 'clustering_gt1000.csv' which contains bin assignment for every contig:
@@ -648,6 +627,7 @@ Visualise this locally with FigTree or on the web with ITOL
 
 Kegg ortholog assignment on genes:
 ```
+cd ~/Projects/InfantGut/Split
 python ~/bin/CompleteClusters.py ../Concoct/clustering_gt1000_scg.tsv > Cluster75.txt
 ```
 
