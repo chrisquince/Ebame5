@@ -434,8 +434,8 @@ sed 's/Map\///g' clustering_gt1000_cov.csv > clustering_gt1000_covR.csv
 Discussion point, how do we calculate cluster coverages?
 
 ```
-cp ~/repos/EBAME19-MetaHood/scripts/ClusterCovNMDS.R .
-cp ~/repos/EBAME19-MetaHood/data/sharon_mappingR.txt  .
+cp ~/repos/Ebame5/scripts/ClusterCovNMDS.R .
+cp ~/repos/Ebame5/data/sharon_mappingR.txt  .
 Rscript ./ClusterCovNMDS.R
 ```
 
@@ -451,8 +451,7 @@ evince ClusterNMDS.pdf
 Also plot some time series:
 
 ```
-cp ~/repos/PenrynTutorial/TimeSeries.R .
-cp ~/Data/InfantGut/sharon_mappingR.txt .
+cp ~/repos/Ebame5/scripts/TimeSeries.R .
 Rscript ./TimeSeries.R
 evince TimeSeries.pdf
 ```
