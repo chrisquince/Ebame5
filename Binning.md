@@ -374,9 +374,9 @@ How many contigs were clustered? How many cut up contigs are there in total?
 
     cd Annotate/
 
-    python $DESMAN/scripts/LengthFilter.py ../Assembly/final_contigs_c10K.fa -m 1000 >     final_contigs_gt1000_c10K.fa
+    python $DESMAN/scripts/LengthFilter.py ../Assembly/final_contigs_c10K.fa -m 1000 > final_contigs_gt1000_c10K.fa
 
-    prodigal -i final_contigs_gt1000_c10K.fa -a final_contigs_gt1000_c10K.faa -d     final_contigs_gt1000_c10K.fna  -f gff -p meta -o final_contigs_gt1000_c10K.gff 
+    prodigal -i final_contigs_gt1000_c10K.fa -a final_contigs_gt1000_c10K.faa -d final_contigs_gt1000_c10K.fna  -f gff -p meta -o final_contigs_gt1000_c10K.gff 
 ```
 
 *** Or this *** Assign COGs change the -c flag which sets number of parallel processes appropriately:
@@ -434,7 +434,8 @@ sed 's/Map\///g' clustering_gt1000_cov.csv > clustering_gt1000_covR.csv
 Discussion point, how do we calculate cluster coverages?
 
 ```
-cp ~/bin/ClusterCovNMDS.R .
+cp ~/repos/EBAME19-MetaHood/scripts/ClusterCovNMDS.R .
+cp ~/repos/EBAME19-MetaHood/data/sharon_mappingR.txt  .
 Rscript ./ClusterCovNMDS.R
 ```
 
