@@ -1,5 +1,17 @@
 # Strain Resolution
 
+##Getting started
+
+```
+source activate MetaHood
+cd ~/repos/DESMAN
+
+sudo /var/lib/miniconda3/envs/MetaHood/bin/python3 ./setup.py install
+
+cd ~
+
+```
+
 ## Run the DESMAN pipeline to resolve strains in each high quality bin
 
 Select clusters which are sufficiently good and have enough coverage > 50 for strain resolution.
