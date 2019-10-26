@@ -7,12 +7,15 @@ rm(list=ls())
 ClusterK <- read.csv("clustering_gt1000_covR.csv",header=TRUE,row.names=1)
 ClusterK <- t(ClusterK)
 ClusterP <- ClusterK/rowSums(ClusterK)
-Meta <- read.csv("sharonMappingR.txt",header=TRUE)
+Meta <- read.table("sharon_mappingR.txt",header=TRUE,sep='\t')
 
 rownames(Meta) <- Meta$Sample
 colnames(ClusterP) <- gsub("^","Cluster",colnames(ClusterP))
 
 scg <- read.table("clustering_gt1000_scg.tsv",header=TRUE,row.names=1)
+scg <- scg[,-1]
+scg <- scg[,-1]
+
 rownames(scg) <- gsub("^","Cluster",rownames(scg))
 ClusterP <- t(ClusterP)
 ClusterP <- ClusterP[rownames(scg),]
@@ -35,4 +38,3 @@ p <- p + theme(axis.title = element_text(size=12, face="bold"))
 pdf("TimeSeries.pdf")
 plot(p)
 dev.off()
-
