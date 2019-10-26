@@ -113,7 +113,7 @@ def main(argv):
             gammaDist /= np.sqrt(gv.dot(gv)) 
             gammaDist /= np.sqrt(hv.dot(hv))
             
-            print args.prefix + "," + str(g) + "," + str(h) + "," + str(etaDist) + "," + str(sndP[g,h]) + ","+ str(gammaDist)
+            print (args.prefix + "," + str(g) + "," + str(h) + "," + str(etaDist) + "," + str(sndP[g,h]) + ","+ str(gammaDist))
 
 if __name__ == "__main__":
     main(sys.argv[1:])
