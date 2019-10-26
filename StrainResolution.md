@@ -16,6 +16,11 @@ more Split/Comp50.txt
 
 ### Getting core variant frequencies
 
+Might need to rest the DESMAN environment variable:
+```
+export DESMAN=~/repos/DESMAN
+```
+
 Then we select the SCGS for each cluster:
 ```bash
 cd ~/Projects/InfantGut
@@ -32,9 +37,10 @@ The first step in pre-processing for DESMAN would be to split up the bam files b
 
 ```
 cd Annotate
-python ~/bin/Lengths.py -i final_contigs_gt1000_c10K.fa > final_contigs_gt1000_c10K.len
+python $DESMAN/scripts/Lengths.py -i final_contigs_gt1000_c10K.fa > final_contigs_gt1000_c10K.len
 cd ..
 ```
+
 
 Then split mapping files:
 ```
@@ -43,7 +49,7 @@ mkdir SplitBam
 while read -r cluster 
 do
     grep ">" Split/${cluster}/${cluster}.fa | sed 's/>//g' > Split/${cluster}/${cluster}_contigs.txt
-    AddLengths.pl Annotate/final_contigs_gt1000_c10K.len < Split/${cluster}/${cluster}_contigs.txt > Split/${cluster}/${cluster}_contigs.tsv
+    ~/repos/Ebame5/scripts/AddLengths.pl Annotate/final_contigs_gt1000_c10K.len < Split/${cluster}/${cluster}_contigs.txt > Split/${cluster}/${cluster}_contigs.tsv
     mkdir SplitBam/${cluster}
     echo $cluster
     for bamfile in Map/*.mapped.sorted.bam
