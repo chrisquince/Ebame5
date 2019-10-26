@@ -485,25 +485,6 @@ $DESMAN/scripts/SplitClusters.pl ../Annotate/final_contigs_gt1000_c10K.fa ../Con
 ~/repos/Ebame5/scripts/SplitFaa.pl ../Annotate/final_contigs_gt1000_c10K.faa ../Concoct/clustering_gt1000.csv
 ```
 
-## Can also run CheckM on individual clusters
-
-CheckM is a very useful 3rd party program for cluster validation...
-
-```
-cd ~/Projects/InfantGut/Split
-checkm lineage_wf -t 8 -x fa Cluster14 Cluster14_cm
-```
-<a name="MAGs"/>
-
-Should give something like:
-```
---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  Bin Id             Marker lineage         # genomes   # markers   # marker sets   0    1    2   3   4   5+   Completeness   Contamination   Strain heterogeneity  
---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  Cluster14   o__Lactobacillales (UID544)      293         475           267        4   465   6   0   0   0       98.69            1.45               0.00          
---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-```
 
 ## Taxonomic Classification of Contigs
 
@@ -576,8 +557,8 @@ while read line
 do
     cog=$line
     echo $cog
-    cat ~/Databases/NCBI/Cogs/All_$cog.ffn SCGs/${cog}.ffn > AlignAll/${cog}_all.ffn
-    mafft --thread 12 AlignAll/${cog}_all.ffn > AlignAll/${cog}_all.gffn
+    cat ~/Databases/Cogs/All_$cog.ffn SCGs/${cog}.ffn > AlignAll/${cog}_all.ffn
+    mafft --thread 4 AlignAll/${cog}_all.ffn > AlignAll/${cog}_all.gffn
 done < cogs.txt
 ```
 
