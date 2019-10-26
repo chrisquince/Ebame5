@@ -427,7 +427,6 @@ Discussion point what is a MAG?
 
 Then we calculate coverage of each cluster/MAG in each sample.
 ```
-sed '1d' clustering_gt1000.csv > clustering_gt1000R.csv
 python $DESMAN/scripts/ClusterMeanCov.py Coverage.csv clustering_gt1000R.csv ../Assembly/final_contigs_c10K.fa > clustering_gt1000_cov.csv
 sed 's/Map\///g' clustering_gt1000_cov.csv > clustering_gt1000_covR.csv
 ```
