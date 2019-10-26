@@ -7,7 +7,7 @@ rm(list=ls())
 ClusterK <- read.csv("clustering_gt1000_covR.csv",header=TRUE,row.names=1)
 ClusterK <- t(ClusterK)
 ClusterP <- ClusterK/rowSums(ClusterK)
-Meta <- read.csv("../Meta.csv",header=TRUE)
+Meta <- read.csv("sharonMappingR.txt",header=TRUE)
 
 rownames(Meta) <- Meta$Sample
 colnames(ClusterP) <- gsub("^","Cluster",colnames(ClusterP))
