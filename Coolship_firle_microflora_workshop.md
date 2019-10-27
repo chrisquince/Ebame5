@@ -91,6 +91,8 @@ mkdir coolship2
 cp coolship20/FAK85494_31cea227a0531215313a902ede383374cb0ea7a6_106.fast5
 cp coolship20/FAK85494_31cea227a0531215313a902ede383374cb0ea7a6_106.fast5 coolship2
 cp coolship20/FAK85494_31cea227a0531215313a902ede383374cb0ea7a6_109.fast5 coolship2
+rm coolship20.tar.gz
+rm -r coolship20
 ```
 
 Guppy fast basecalling:
@@ -182,10 +184,19 @@ cat path/to/pass/*.fastq > workshop.reads.fastq
 If required, you can resample reads using fastqSample command from the program Canu.
 To resample 15,000 reads with the same length distribution but no less than 1000bp:
 
+Need to activate LongReads environment **now**
 ```
-cp path/to/workshop.reads.fastq path/to/reads.fastq.u.fastq
+conda activate LongReads
+```
 
-fastqSample -U -p 150000 -m 1000 -I /path/to/reads.fastq -O /path/to/reads.downsample.fastq.
+Copy in precalled reads:
+```
+
+cd ~/Projects/LongReads
+
+cp /var/autofs/ifb/public/teachdata/ebame/2019/LongReadTutorial/workshop.reads.fastq workshop.reads.u.fastq
+
+fastqSample -U -p 150000 -m 1000 -I workshop.reads -O workshop.reads.downsample.fastq
 
 ```
 Note: the file name must be `FILENAME.fastq.u.fastq` but the path must show `FILENAME.fastq`.  
