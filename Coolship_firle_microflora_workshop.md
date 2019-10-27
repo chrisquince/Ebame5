@@ -273,7 +273,7 @@ cd Projects/LongReads
 
 mkdir Kraken_out
 
-kraken2 --db Databases/minikraken2_v2_8GB_201904_UPDATE --threads 4 --report Kraken_out/ workshop.reads.fastq > Kraken_out/workshop.reads.krak
+kraken2 --db Databases/minikraken2_v2_8GB_201904_UPDATE --threads 4 --report Kraken_out/report.txt workshop.reads.fastq > Kraken_out/workshop.reads.krak
 
 ```
 
@@ -305,9 +305,18 @@ While scrolling through the kraken2 outputs can be fun and somewhat alarming, it
 
 Krona produces an interactive `.html` file based on your `--report` file. While not fully integrated with kraken2, the use of the report file gives an overall approximation of your sample diversity based on individual reads. Try this on the kraken outputs from the different databases and/or basecalling modes. 
 
+Need to update taxonomy first:
+```
+cd /var/lib/miniconda3/envs/LongReads/opt/krona
+./updateTaxonomy.sh
+ 
 ```
 
-ktImportTaxonomy -q 2 -t 3 report.txt -o kraken_krona_report.html
+```
+
+cd ~/Projects/LongReads
+
+ktImportTaxonomy -q 2 -t 3 Kraken_out/report.txt -o kraken_krona_report.html
 
 ```
 |Flag                         | Description                                                            | 
