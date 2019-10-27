@@ -344,8 +344,10 @@ It should look something like this:
 [Pavian](https://github.com/fbreitwieser/pavian) is an R based program that is useful to produce Sankey plots and much more. It can be run on your local machine if you have R [installed](https://a-little-book-of-r-for-bioinformatics.readthedocs.io/en/latest/src/installr.html). You may need to install `r-base-dev`. To set up Pavian in R on your local machine, open an R terminal and enter the following.  
 
 ```
-if (!require(remotes)) { install.packages("remotes") }
-remotes::install_github("fbreitwieser/pavian")
+sudo R
+
+>if (!require(remotes)) { install.packages("remotes") }
+>remotes::install_github("fbreitwieser/pavian")
 
 ```
 
@@ -353,7 +355,7 @@ To run Pavian enter into R terminal:
 
 ```
 
-pavian::runApp(port=5000)
+>pavian::runApp(port=5000)
 
 ```
 You can now access Pavian at http://127.0.0.1:5000 in a web browser if it does not load automatically.  
@@ -398,7 +400,7 @@ Note: The output of this file is in a compressed pairwise alignment format (.paf
 [Miniasm](https://github.com/lh3/miniasm) is then used to perform an assembly using the identified overlaps in the `.paf` file. No error correction is undertaken thus the assembled contigs will have the approximate error structure of raw reads.  
 
 ```
-miniasm -f workshop.reads.fastq qorkshop.paf.gz > workshop.contigs.gfa
+miniasm -f workshop.reads.fastq workshop.paf.gz > workshop.contigs.gfa
 
 ```
 
