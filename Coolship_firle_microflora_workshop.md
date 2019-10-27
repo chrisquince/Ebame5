@@ -33,6 +33,25 @@ Lysis was undertaken at 55 degrees C with SDS, beta mercaptoethanol and protinas
 
 Organise into groups of 3 - 4.  
 
+Login to MetaHood VM
+
+First we need to download the VM repo to get an install script:
+```
+mkdir ~/repos
+
+cd repos
+
+git clone https://github.com/Sebastien-Raguideau/Ebame19-Quince.git
+
+cd Ebame19-Quince.git
+
+./init.sh
+
+cd ~
+
+```
+
+
 ## Data  
 
 Sample fast5 files:  
@@ -42,9 +61,44 @@ minikraken database:
 workshop database:  
 
 
+
+
+
+```
+conda activate LongReads
+```
+
+Data is here:
+```
+ls /var/autofs/ifb/public/teachdata/ebame/2019/LongReadTutorial
+```
+
+
 ## Basecalling
 
 Nanopore sequencing results in fast5 files that contain raw signal data termed "squiggles". This signal needs to be processed into the `.fastq` format for onward analysis. This is undertaken through a process called 'basecalling'. The current program released for use by Oxford Nanopore is called `Guppy` and can be implemented in both GPU and CPU modes. Two forms of basecalling are available, 'fast' and 'high-accuracy' (HAC). HAC basecalling implements a 'flipflop' basecalling algorithm which is highly computationally intensive and thus slower than the fast basecalling method. Compare the two methods on the subset of fast5 files.  
+
+Get the fast5 reads:
+```
+mkdir Projects
+
+mkdir Projects/LongReads
+
+cd Projects/LongReads
+
+cp /var/autofs/ifb/public/teachdata/ebame/2019/LongReadTutorial/coolship20.tar.gz .
+
+tar -xvzf coolship20.tar.gz
+
+```
+
+Scrappie basecalling:
+
+```
+scrappie raw reads coolship20 > basecalls.fa
+```
+
+
 
 Guppy fast basecalling:
 ```
