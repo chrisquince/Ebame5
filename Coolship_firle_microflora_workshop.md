@@ -71,11 +71,13 @@ ls /var/autofs/ifb/public/teachdata/ebame/2019/LongReadTutorial
 
 Nanopore sequencing results in fast5 files that contain raw signal data termed "squiggles". This signal needs to be processed into the `.fastq` format for onward analysis. This is undertaken through a process called 'basecalling'. The current program released for use by Oxford Nanopore is called `Guppy` and can be implemented in both GPU and CPU modes. Two forms of basecalling are available, 'fast' and 'high-accuracy' (HAC). HAC basecalling implements a 'flipflop' basecalling algorithm which is highly computationally intensive and thus slower than the fast basecalling method. Compare the two methods on the subset of fast5 files.  
 
-Get the fast5 reads:
+Get the fast5 reads into a dir on our /mnt directories:
 ```
-mkdir Projects
+mkdir /mnt/Projects
 
-mkdir Projects/LongReads
+ln -s /mnt/Projects ~
+
+mkdir ~/Projects/LongReads
 
 cd Projects/LongReads
 
@@ -219,13 +221,11 @@ Note: the file name must be `FILENAME.fastq.u.fastq` but the path must show `FIL
 
 Sometimes errors can occur when preparing a `.fastq` file for analysis. This can cause problems in down stream processing. [Seqkit](https://github.com/shenwei356/seqkit) is designed to help identify errors and salvage broken `.fastq` files.
 
-If not installed, Seqkit can be installed in your conda environment by:
-
+```
+cd ~/Projects/LongReads
+cp /var/autofs/ifb/public/teachdata/ebame/2019/LongReadTutorial/workshop.reads.fastq .
 ```
 
-conda install -c bioconda seqkit
-
-```
 
 Run [Seqkit sana](https://bioinf.shenwei.me/seqkit/usage/#sana) to sanitize a `.fastq` file.  
 
@@ -238,6 +238,21 @@ seqkit sana  workshop.reads.fastq -o rescued.workshop.reads.fastq
 ## Taxonomic identification using Kraken2.
 
 Kraken and Kraken2 provide a means to assign taxonomic identification to reads using a k-mer based indexing against a reference database. We provide a small reference database compiled for this workshop as well as the minikraken2 database. (ftp://ftp.ccb.jhu.edu/pub/data/kraken2_dbs/minikraken2_v2_8GB_201904_UPDATE.tgz) Other databases such as the Loman labs [microbial-fat-free](https://lomanlab.github.io/mockcommunity/mc_databases.html) and [maxikraken](https://lomanlab.github.io/mockcommunity/mc_databases.html) are also available. 
+
+### Install Databases
+
+```
+cd /mnt/Projects/LongReads
+
+mkdir Databases
+
+cp /var/autofs/ifb/public/teachdata/ebame/2019/LongReadTutorial/minikraken2_v2_8GB_201904_UPDATE.tgz Databases
+
+cd Databases
+
+tar -xvzf minikraken2_v2_8GB_201904_UPDATE.tgz
+
+```
 
 ### Optional extra information
 
