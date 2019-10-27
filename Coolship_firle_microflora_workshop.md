@@ -85,12 +85,6 @@ tar -xvzf coolship20.tar.gz
 
 ```
 
-Scrappie basecalling:
-
-```
-scrappie raw reads coolship20 > basecalls.fa
-```
-
 
 
 Guppy fast basecalling:
