@@ -269,7 +269,11 @@ conda activate LongReads
 
 ```
 
-kraken2 --db path/to/kraken2_workshop_db/ --threads 8 --report path/to/output/report.txt path/to/workshop.reads.fastq > path/to/output
+cd Projects/LongReads
+
+mkdir Kraken_out
+
+kraken2 --db Databases/minikraken2_v2_8GB_201904_UPDATE --threads 4 --report Kraken_out/ workshop.reads.fastq > Kraken_out/workshop.reads.krak
 
 ```
 
