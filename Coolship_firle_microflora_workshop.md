@@ -43,7 +43,7 @@ cd repos
 
 git clone https://github.com/Sebastien-Raguideau/Ebame19-Quince.git
 
-cd Ebame19-Quince.git
+cd Ebame19-Quince
 
 ./init.sh
 
