@@ -61,13 +61,6 @@ minikraken database:
 workshop database:  
 
 
-
-
-
-```
-conda activate LongReads
-```
-
 Data is here:
 ```
 ls /var/autofs/ifb/public/teachdata/ebame/2019/LongReadTutorial
@@ -102,8 +95,7 @@ scrappie raw reads coolship20 > basecalls.fa
 
 Guppy fast basecalling:
 ```
-guppy_basecaller -r --input_path path/to/fast5/ --save_path /path/to/fastq/ --qscore_filtering --min_qscore 7 --cpu_threads_per_caller 4 --num_callers 2
-
+guppy_basecaller -r --input_path coolship20 --save_path coolship20_fast5 --qscore_filtering --min_qscore 7 --cpu_threads_per_caller 4 --num_callers 2 --flowcell FLO-PRO001 --kit SQK-RNA002
 ```
 
 Guppy high_accuracy basecalling:
@@ -240,6 +232,13 @@ Kraken and Kraken2 provide a means to assign taxonomic identification to reads u
 Custom reference databases can be created using `kraken2-build --download-library`, `--download-taxonomy` and `--build` [commands](https://ccb.jhu.edu/software/kraken2/index.shtml?t=manual#custom-databases). Mick Wattson has written [Perl scripts](https://github.com/mw55309/Kraken_db_install_scripts) to aid in customisation. An example of the creation of custom databases by the Loman lab can be found [here](http://porecamp.github.io/2017/metagenomics.html).
 
 Run `kraken2` on the sanitized `workshop.reads.fastq` file provided in this tutorial using the `kraken2_workshop_db`. 
+
+**Need to activate conda environment**
+
+```
+conda activate LongReads
+```
+
 
 ```
 
