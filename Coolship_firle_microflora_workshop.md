@@ -419,7 +419,7 @@ Polishing a sequence refers to the process of identifying and correcting errors 
 The first step in polishing an assembly is to remap the raw reads back to the assembled contigs. This is done using `minimap2 -ax map-ont`.  
 
 ```
-minimap2 -t 8 -ax map-ont workshop.contigs.fasta workshop.reads.fastq | gzip -1 > workshop.reads_to_assembly.paf.gz
+minimap2 -t 8 -x map-ont workshop.contigs.fasta workshop.reads.fastq | gzip -1 > workshop.reads_to_assembly.paf.gz
 
 ```
 
