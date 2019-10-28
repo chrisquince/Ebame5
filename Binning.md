@@ -488,6 +488,10 @@ $DESMAN/scripts/SplitClusters.pl ../Annotate/final_contigs_gt1000_c10K.fa ../Con
 
 ## Taxonomic Classification of Contigs
 
+```
+tar -xvzf minikraken_20171019_8GB.tgz 
+```
+
 
 We will annotate contigs using a kmer based LCA algorithm Kraken:
 ```
@@ -596,7 +600,7 @@ Then we may want to map taxaids to species names before building tree:
 Finally we get to build our tree:
 
 ```
-fasttreeMP -nt -gtr < AlignAllR.gfa 2> SelectR.out > AlignAllR.tree
+fasttree -nt -gtr < AlignAllR.gfa 2> SelectR.out > AlignAllR.tree
 ```
 
 Visualise this locally with FigTree or on the web with ITOL
@@ -608,7 +612,7 @@ Visualise this locally with FigTree or on the web with ITOL
 Kegg ortholog assignment on genes:
 ```
 cd ~/Projects/InfantGut/Split
-python ~/bin/CompleteClusters.py ../Concoct/clustering_gt1000_scg.tsv > Cluster75.txt
+python ~/repos/Ebame5/scripts/CompleteClusters.py ../Concoct/clustering_gt1000_scg.tsv > Cluster75.txt
 ```
 
 ```

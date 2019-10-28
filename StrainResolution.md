@@ -1,6 +1,6 @@
 # Strain Resolution
 
-##Getting started
+## Getting started
 
 ```
 source activate MetaHood
@@ -277,8 +277,8 @@ Intersection: 214
 Now look at time series of strain abundance:
 
 ```
-cp ~/repos/PenrynTutorial/TimeStrain.R .
-Rscript TimeStrain.R -g Cluster18_3_0/Gamma_starR.csv -m ~/Data/InfantGut/sharon_mappingR.txt 
+cp ~/repos/Ebame5/scripts/TimeStrain.R .
+Rscript TimeStrain.R -g Cluster18_3_0/Gamma_starR.csv -m ~/repos/Ebame5/data/sharon_mappingR.txt 
 ```
 
 ![Strain time series](./Figures/StrainSeries.png)
@@ -364,5 +364,5 @@ python3 $DESMAN/desman/GeneAssign.py Cluster18_coremean_sd_df.csv Cluster18_3_0/
 
 And look at gene and SNP divergence:
 ```
-python ~/repos/PenrynTutorial/IdentEtaGamma.py Cluster18 Cluster18etaS_df.csv Cluster18_3_0/Selected_variants.csv Cluster18_3_0/Filtered_Tau_starR.csv Cluster18_3_0/Gamma_starR.csv
+python ~/repos/Ebame5/scripts/IdentEtaGamma.py Cluster18 Cluster18etaS_df.csv Cluster18_3_0/Selected_variants.csv Cluster18_3_0/Filtered_Tau_starR.csv Cluster18_3_0/Gamma_starR.csv
 ```
