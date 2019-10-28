@@ -72,23 +72,22 @@ tar -xvzf coolship20.tar.gz
 
 Now just select two fast5 files:
 ```
-mkdir coolship2
-cp coolship20/FAK85494_31cea227a0531215313a902ede383374cb0ea7a6_106.fast5
-cp coolship20/FAK85494_31cea227a0531215313a902ede383374cb0ea7a6_106.fast5 coolship2
-cp coolship20/FAK85494_31cea227a0531215313a902ede383374cb0ea7a6_109.fast5 coolship2
-rm coolship20.tar.gz
-rm -r coolship20
+mkdir coolship1
+
+cp coolship20/FAK85494_31cea227a0531215313a902ede383374cb0ea7a6_106.fast5 coolship1
+
+
 ```
 
 Guppy fast basecalling:
 ```
-guppy_basecaller -r --input_path coolship2 --save_path coolship2_fastq --qscore_filtering --min_qscore 7 --cpu_threads_per_caller 4 --num_callers 2 --flowcell FLO-PRO001 --kit SQK-RNA002
+guppy_basecaller -r --input_path coolship1 --save_path coolship2_fastq --qscore_filtering --min_qscore 7 --cpu_threads_per_caller 4 --num_callers 2 --flowcell FLO-PRO001 --kit SQK-RNA002
 ```
 
 
 Guppy high_accuracy basecalling:
 ```
-guppy_basecaller -r --input_path coolship2 --save_path coolship2_fastq_hq --config dna_r9.4.1_450bps_hac.cfg  --qscore_filtering --min_qscore 7 --cpu_threads_per_caller 4 --num_callers 2
+guppy_basecaller -r --input_path coolship1 --save_path coolship2_fastq_hq --config dna_r9.4.1_450bps_hac.cfg  --qscore_filtering --min_qscore 7 --cpu_threads_per_caller 4 --num_callers 2
 
 ```
 
