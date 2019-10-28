@@ -398,22 +398,15 @@ tar -xvzf /home/ubuntu/data/public/teachdata/ebame/2019/rpsblast_cog_db.tar.gz -
 
 ```
 
-*** Or this *** Assign COGs change the -c flag which sets number of parallel processes appropriately:
+Assign COGs change the -c flag which sets number of parallel processes appropriately:
 ```
-    export COGSDB_DIR=~/Databases/rpsblast_cog_db
-    $CONCOCT/scripts/RPSBLAST.sh -f final_contigs_gt1000_c10K.faa -p -c 12 -r 1
+export COGSDB_DIR=~/Databases/rpsblast_cog_db
+$CONCOCT/scripts/RPSBLAST.sh -f final_contigs_gt1000_c10K.faa -p -c 8 -r 1
 ```
-
-Instead copy in Annotate directory:
-```
-cd ~/Projects/InfantGut
-cp -r ~/Prerun/Annotate .
-```
-
 
 Now we calculate scg frequencies on the CONCOCT clusters:
 ```
-cd Concoct
+cd ../Concoct
 sed '1d' clustering_gt1000.csv > clustering_gt1000R.csv
 python $CONCOCT/scripts/COG_table.py -b ../Annotate/final_contigs_gt1000_c10K.out  -m $CONCOCT/scgs/scg_cogs_min0.97_max1.03_unique_genera.txt -c clustering_gt1000R.csv  --cdd_cog_file $CONCOCT/scgs/cdd_to_cog.tsv > clustering_gt1000_scg.tsv
 ```
@@ -446,8 +439,10 @@ Discussion point what is a MAG?
 
 Then we calculate coverage of each cluster/MAG in each sample.
 ```
+
 python $DESMAN/scripts/ClusterMeanCov.py Coverage.csv clustering_gt1000R.csv ../Assembly/final_contigs_c10K.fa > clustering_gt1000_cov.csv
 sed 's/Map\///g' clustering_gt1000_cov.csv > clustering_gt1000_covR.csv
+
 ```
 
 Discussion point, how do we calculate cluster coverages?
