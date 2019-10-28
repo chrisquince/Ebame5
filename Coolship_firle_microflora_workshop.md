@@ -437,8 +437,10 @@ The assemblers [Flye](https://github.com/fenderglass/Flye) and [Canu](https://gi
 
 
 ```
+cd ~/Projects/LongReads 
 
-flye --nano-raw path/to/workshop.reads.fastq -g 1g -o flye_workshop/ -t 8 --meta
+flye --nano-raw workshop.reads.fastq -g 20m -o flye_workshop/ -t 8 --meta
+
 
 ```
 
