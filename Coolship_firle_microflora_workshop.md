@@ -31,26 +31,9 @@ Lysis was undertaken at 55 degrees C with SDS, beta mercaptoethanol and protinas
 
 ## Setup  
 
-Organise into groups of 3 - 4.  
+Organise into groups of 1 - 2.  
 
 Login to MetaHood VM
-
-First we need to download the VM repo to get an install script:
-```
-mkdir ~/repos
-
-cd repos
-
-git clone https://github.com/Sebastien-Raguideau/Ebame19-Quince.git
-
-cd Ebame19-Quince
-
-./init.sh
-
-cd ~
-
-```
-
 
 ## Data  
 
