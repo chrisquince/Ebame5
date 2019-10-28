@@ -644,6 +644,16 @@ Visualise this locally with FigTree or on the web with ITOL
 
 ## Kegg orthologs
 
+First download Kegg database:
+```
+cd /mnt/Databases
+mkdir /mnt/Databases/KEGG
+cd KEGG
+wget https://septworkshop.s3.climb.ac.uk/genes.pep.gz
+wget https://septworkshop.s3.climb.ac.uk/ko_genes.list
+
+```
+
 Kegg ortholog assignment on genes:
 ```
 cd ~/Projects/InfantGut/Split

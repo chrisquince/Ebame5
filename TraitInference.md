@@ -12,6 +12,15 @@ gunzip taxid_ko_matrix_all_full.csv.gz
 cd ..
 ```
 
+```
+pip3 install jupyter --user
+sudo pip3 install pandas
+sudo pip3 install scikit-learn
+sudo pip3 install matplotlib
+
+export PATH=/home/ubuntu/.local/bin/:$PATH
+```
+
 Log on to the virtual machine. Launch a Jupyter Notebook instance by typing:
 
 ```
