@@ -179,11 +179,7 @@ ls ReadsSub/*R2.fastq | tr "\n" "," | sed 's/,$//' > R2.csv
 megahit -1 $(<R1.csv) -2 $(<R2.csv) -t 4 -o Assembly
 ```
 
-That would take 20 minutes so please copy in the directory instead:
 
-```
-cp -r ~/Prerun/Assembly .
-```
 
 <details><summary>What is the N50 of coassembled contigs</summary>
 <p>
@@ -280,7 +276,7 @@ Can then use a simple awk command to get coverage depth:
 ```
 
 
-**Do not run this**: to run all samples we would place these steps in a shell script:
+to run all samples we would place these steps in a shell script:
 
 ```bash
 cd ~/Projects/InfantGut
@@ -295,11 +291,11 @@ do
 
    file2=${stub}_R2.fastq
 
-   bwa mem -t 12 Assembly/final_contigs_c10K.fa $file $file2 > Map/${name}.sam
+   bwa mem -t 8 Assembly/final_contigs_c10K.fa $file $file2 > Map/${name}.sam
 done
 ```
 
-**Do not run this**: And calculate coverages:
+And calculate coverages:
 
 ```
 for file in Map/*.sam
@@ -313,19 +309,7 @@ done
 
 Why do we use the '&' is the above? How many cores will this script use?
 
-Instead copy across a prerun directory:
-```
-
-cd ~/Projects/InfantGut
-
-rm -r Map
-
-cp -r ~/Prerun/Map .
-
-```
-
-
-**Do run this**:
+Now get all coverages across samples:
 
 ```
 for i in Map/*_cov.txt 
@@ -338,8 +322,7 @@ do
 done
 ```
 
-
-**and this**:
+And collate them into a single table:
 
 ```
 $DESMAN/scripts/Collate.pl Map > Coverage.csv
@@ -393,7 +376,7 @@ How many contigs were clustered? How many cut up contigs are there in total?
 
 ## Identify MAGs
 
-***Do not run this ***: Find genes using prodigal:
+Find genes using prodigal:
 ```
     cd ..
     
@@ -404,6 +387,15 @@ How many contigs were clustered? How many cut up contigs are there in total?
     python $DESMAN/scripts/LengthFilter.py ../Assembly/final_contigs_c10K.fa -m 1000 > final_contigs_gt1000_c10K.fa
 
     prodigal -i final_contigs_gt1000_c10K.fa -a final_contigs_gt1000_c10K.faa -d final_contigs_gt1000_c10K.fna  -f gff -p meta -o final_contigs_gt1000_c10K.gff 
+```
+
+Download COG database:
+
+```
+
+mkdir -p /home/ubuntu/Databases/
+tar -xvzf /home/ubuntu/data/public/teachdata/ebame/2019/rpsblast_cog_db.tar.gz -C /home/ubuntu/Databases/
+
 ```
 
 *** Or this *** Assign COGs change the -c flag which sets number of parallel processes appropriately:
