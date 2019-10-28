@@ -252,7 +252,7 @@ conda activate LongReads
 
 ```
 
-cd Projects/LongReads
+cd ~/Projects/LongReads
 
 mkdir Kraken_out
 
