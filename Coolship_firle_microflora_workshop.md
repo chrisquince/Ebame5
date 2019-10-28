@@ -79,7 +79,7 @@ cp coolship20/FAK85494_31cea227a0531215313a902ede383374cb0ea7a6_106.fast5 coolsh
 
 ```
 
-Guppy fast basecalling:
+Guppy fast basecalling **Change to correct flow cell and kit**:
 ```
 guppy_basecaller -r --input_path coolship1 --save_path coolship1_fastq --qscore_filtering --min_qscore 7 --cpu_threads_per_caller 4 --num_callers 2 --flowcell FLO-PRO001 --kit SQK-RNA002
 ```
