@@ -37,7 +37,7 @@ This will involve a collection of different software programs:
 
 <a name="coassembly"/>
 
-##Getting started
+## Getting started
 
 Create a VM - EBAME19-MetaHood
 
@@ -70,8 +70,22 @@ Then copy in the short reads:
 
 cp /var/autofs/ifb/public/teachdata/ebame/2019/InfantGutConcoctTutorial/ReadsSub.tar.gz .
 
-tar -xvzf /ReadsSub.tar.gz
+tar -xvzf ReadsSub.tar.gz
 
+
+```
+
+Then delete 4 samples:
+
+```
+
+rm ReadsSub/sample8*
+
+rm ReadsSub/sample9*
+
+rm ReadsSub/sample10*
+
+rm ReadsSub/sample11*
 
 ```
 
@@ -110,6 +124,12 @@ echo $(cat ReadsSub/sample1_R1.fastq |wc -l)/4|bc
 
 Now we will try a single sample assembly with megahit. Can you assemble the forward and reverse reads from sample 1 using megahit?
 
+Now need to activate conda environment:
+
+```
+conda activate MetaHood
+```
+
 
 <details><summary> Can you assemble the forward and reverse reads from sample 1? </summary>
 <p>
@@ -125,7 +145,7 @@ megahit -1 ReadsSub/sample1_R1.fastq -2 ReadsSub/sample1_R2.fastq -o Assembly1
 I have provided a script to evaluate these assembly results:
 
 ```
-contig-stats.pl < Assembly1/final.contigs.fa
+~/repos/Ebame5/scripts/contig-stats.pl < Assembly1/final.contigs.fa
 ```
 
 What is contig N50?
