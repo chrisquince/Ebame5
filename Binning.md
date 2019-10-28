@@ -47,25 +47,32 @@ conda activate MetaHood
 
 ## Assembly
 
-Start off by moving into the Projects directory and creating a new directory called InfantGut:
-
-
-<details><summary>Reveal commands</summary>
-<p>
-
+Start off by moving into the /mnt directory create new directory Projects and subdirectory InfantGut:
 
 ```
-cd ~/Projects
+cd /mnt
+
+mkdir Projects
+
+ln -s Projects ~
+
+cd Projects
+
 mkdir InfantGut
-```
 
-</p>
-</details>
-
-Now move into the InfantGut directory and link in the Infant Gut reads:
-```
 cd InfantGut
-ln -s ~/Data/InfantGut/ReadsSub .
+
+```
+
+Then copy in the short reads:
+
+```
+
+cp /var/autofs/ifb/public/teachdata/ebame/2019/InfantGutConcoctTutorial/ReadsSub.tar.gz .
+
+tar -xvzf /ReadsSub.tar.gz
+
+
 ```
 
 These are subsampled from the [paper](https://www.ncbi.nlm.nih.gov/pubmed/22936250).
