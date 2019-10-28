@@ -518,7 +518,7 @@ We will annotate contigs using a kmer based LCA algorithm Kraken.
 
 ```
 cd /mnt/Projects/InfantGut/Annotate
-kraken --db /mnt/Databases/minikraken_20141208/ --threads 8 --preload --output final_contigs_gt1000_c10K.krak final_contigs_gt1000_c10K.fa
+kraken --db /mnt/Databases/minikraken_20171019_8GB --threads 8 --preload --output final_contigs_gt1000_c10K.krak final_contigs_gt1000_c10K.fa
 ```
 
 </p>
@@ -528,12 +528,12 @@ kraken --db /mnt/Databases/minikraken_20141208/ --threads 8 --preload --output f
 
 To generate a report file:
 ```
-kraken-report --db ~/Databases/minikraken_20141208/ final_contigs_gt1000_c10K.krak 
+kraken-report --db /mnt/Databases/minikraken_20171019_8GB final_contigs_gt1000_c10K.krak 
 ```
 
 Or in a better format:
 ```
-kraken-translate --mpa-format --db ~/Databases/minikraken_20141208/ final_contigs_gt1000_c10K.krak > final_contigs_gt1000_c10K.krak.mpi.tran
+kraken-translate --mpa-format --db /mnt/Databases/minikraken_20171019_8GB final_contigs_gt1000_c10K.krak > final_contigs_gt1000_c10K.krak.mpi.tran
 ```
 
 Now we will compare the cluster assignments of contigs to the Kraken species assignments:
@@ -580,7 +580,15 @@ done < cogs.txt
 
 Run this after making a directory SCGs and it will create one file for each SCG with the corresponding nucleotide sequences from each cluster but only for this with completeness (> 0.75) hard coded in the perl script somewhere you should check that :)
 
-Then we align each of these cog files against my prepared database containing 1 genome from each bacterial genera and archael species:
+Then we align each of these cog files against my prepared database containing 1 genome from each bacterial genera and archael species. First install database:
+```
+cd /mnt/Databases
+wget https://septworkshop.s3.climb.ac.uk/Cogs.tar.gz
+tar -xvzf Cogs.tar.gz
+```
+Then
+
+
 ```
 mkdir AlignAll
 
@@ -588,7 +596,7 @@ while read line
 do
     cog=$line
     echo $cog
-    cat ~/Databases/Cogs/All_$cog.ffn SCGs/${cog}.ffn > AlignAll/${cog}_all.ffn
+    cat /mnt/Databases/Cogs/All_$cog.ffn SCGs/${cog}.ffn > AlignAll/${cog}_all.ffn
     mafft --thread 4 AlignAll/${cog}_all.ffn > AlignAll/${cog}_all.gffn
 done < cogs.txt
 ```
