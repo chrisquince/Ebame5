@@ -204,8 +204,9 @@ Note: the file name must be `FILENAME.fastq.u.fastq` but the path must show `FIL
 Sometimes errors can occur when preparing a `.fastq` file for analysis. This can cause problems in down stream processing. [Seqkit](https://github.com/shenwei356/seqkit) is designed to help identify errors and salvage broken `.fastq` files.
 
 ```
-cd ~/Projects/LongReads
-cp /var/autofs/ifb/public/teachdata/ebame/2019/LongReadTutorial/workshop.reads.fastq .
+
+mv workshop.reads.u.fastq workshop.reads.fastq
+
 ```
 
 
