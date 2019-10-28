@@ -393,14 +393,14 @@ Download COG database:
 
 ```
 
-mkdir -p /home/ubuntu/Databases/
-tar -xvzf /home/ubuntu/data/public/teachdata/ebame/2019/rpsblast_cog_db.tar.gz -C /home/ubuntu/Databases/
+mkdir -p /mnt/Databases/
+tar -xvzf /home/ubuntu/data/public/teachdata/ebame/2019/rpsblast_cog_db.tar.gz -C /mnt/Databases/
 
 ```
 
 Assign COGs change the -c flag which sets number of parallel processes appropriately:
 ```
-export COGSDB_DIR=~/Databases/rpsblast_cog_db
+export COGSDB_DIR=/mnt/Databases/rpsblast_cog_db
 $CONCOCT/scripts/RPSBLAST.sh -f final_contigs_gt1000_c10K.faa -p -c 8 -r 1
 ```
 
@@ -503,15 +503,28 @@ $DESMAN/scripts/SplitClusters.pl ../Annotate/final_contigs_gt1000_c10K.fa ../Con
 ## Taxonomic Classification of Contigs
 
 ```
+cd /mnt/Databases
+wget http://ccb.jhu.edu/software/kraken/dl/minikraken_20171019_8GB.tgz
 tar -xvzf minikraken_20171019_8GB.tgz 
 ```
 
 
-We will annotate contigs using a kmer based LCA algorithm Kraken:
+We will annotate contigs using a kmer based LCA algorithm Kraken. 
+
+
+<details><summary>This is Kraken 1 - try to figure out command yourselves?</summary>
+<p>
+
+
 ```
-cd ~/Projects/InfantGut/Annotate
-kraken --db ~/Databases/minikraken_20141208/ --threads 8 --preload --output final_contigs_gt1000_c10K.krak final_contigs_gt1000_c10K.fa
+cd /mnt/Projects/InfantGut/Annotate
+kraken --db /mnt/Databases/minikraken_20141208/ --threads 8 --preload --output final_contigs_gt1000_c10K.krak final_contigs_gt1000_c10K.fa
 ```
+
+</p>
+</details>
+
+
 
 To generate a report file:
 ```
