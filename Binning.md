@@ -644,13 +644,18 @@ Visualise this locally with FigTree or on the web with ITOL
 
 ## Kegg orthologs
 
-First download Kegg database:
+First download Kegg database and diamond aligner:
 ```
 cd /mnt/Databases
-mkdir /mnt/Databases/KEGG
-cd KEGG
-wget https://septworkshop.s3.climb.ac.uk/genes.pep.gz
-wget https://septworkshop.s3.climb.ac.uk/ko_genes.list
+wget https://kegg.s3.climb.ac.uk/KeggUpdate.tar.gz
+tar -xvzf KeggUpdate.tar.gz
+
+cd ~/repos
+mkdir diamond
+cd diamond
+wget http://github.com/bbuchfink/diamond/releases/download/v0.9.22/diamond-linux64.tar.gz
+tar xzf diamond-linux64.tar.gz
+cp diamond ~/bin
 
 ```
 
