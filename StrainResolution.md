@@ -3,7 +3,7 @@
 ## Getting started
 
 ```
-source activate MetaHood
+conda activate MetaHood
 cd ~/repos/DESMAN
 
 sudo /var/lib/miniconda3/envs/MetaHood/bin/python3 ./setup.py install
@@ -28,10 +28,7 @@ more Split/Comp50.txt
 
 ### Getting core variant frequencies
 
-Might need to rest the DESMAN environment variable:
-```
-export DESMAN=~/repos/DESMAN
-```
+
 
 Then we select the SCGS for each cluster:
 ```bash
@@ -45,7 +42,7 @@ do
 done < Split/Comp50.txt
 ```
 
-The first step in pre-processing for DESMAN would be to split up the bam files by each cluster in turn:
+The first step in pre-processing for DESMAN is to split up the bam files by each cluster in turn:
 
 ```
 cd Annotate
