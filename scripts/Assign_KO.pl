@@ -2,7 +2,7 @@
 
 use strict;
 
-my $koMapFile = "/home/ubuntu/Databases/keggs_database/KeggUpdate/genes/ko/ko_genes.list";
+my $koMapFile = "//mnt/Databases/KeggUpdate/genes/ko/ko_genes.list";
 
 my %hashGeneKo = {};
 
