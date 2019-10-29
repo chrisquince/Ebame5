@@ -399,7 +399,7 @@ awk '/^S/{print ">"$2"\n"$3}' workshop.contigs.gfa | fold > workshop.contigs.fas
 
 Polishing a sequence refers to the process of identifying and correcting errors in a sequence based on a consensus or raw reads. Some methods use raw signal data from the fast5 files to aid in the identification and correction. A number of polishing programs are in circulation which include the gold standard [Nanopolish](https://github.com/jts/nanopolish), the ONT release [Medaka](https://github.com/nanoporetech/medaka) and the ultra-fast [Racon](https://github.com/isovic/racon). Each approach has advantages and disadvantages to their use. Nanopolish is computationally intensive but uses raw signal data contained in fast5 files to aid error correction. This also relies on the retention of the large `.fast5` files from a sequencing run. Medaka is reliable and relatively fast and racon is ultra fast but does not use raw squiggle data.  
 
-The first step in polishing an assembly is to remap the raw reads back to the assembled contigs. This is done using `minimap2 -ax map-ont`.  
+The first step in polishing an assembly is to remap the raw reads back to the assembled contigs. This is done using `minimap2 -x map-ont`.  
 
 ```
 minimap2 -t 8 -x map-ont workshop.contigs.fasta workshop.reads.fastq | gzip -1 > workshop.reads_to_assembly.paf.gz
@@ -410,7 +410,7 @@ Racon is then used to polish the assembled contigs using the mapped raw reads.
 
 ```
 
-racon -t 12 workshop.reads.fastq workshop.reads_to_assembly.paf.gz workshop.contigs.fasta > workshop.contigs.racon.fasta
+racon -t 8 workshop.reads.fastq workshop.reads_to_assembly.paf.gz workshop.contigs.fasta > workshop.contigs.racon.fasta
 
 ```
 
