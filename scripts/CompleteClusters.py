@@ -36,7 +36,7 @@ def main(argv):
             if tok == "1":
                 count=count+1
         if count/36. > 0.75:
-            print "Cluster" + tokens[0]
+            print ("Cluster" + tokens[0])
 
     #import ipdb; ipdb.set_trace()
 if __name__ == "__main__":
